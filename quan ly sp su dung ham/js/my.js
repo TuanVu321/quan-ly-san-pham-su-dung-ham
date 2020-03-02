@@ -7,10 +7,10 @@ function showlist() {
         html = html + arr[i];
         html = html + '</td>';
         html = html + '<td>';
-        html = html + '<button id = "i" type = "button" onclick = "delete1(this.id)"  >Delete</button>';
+        html = html + "<button onclick='delete1(this,"+i+")'>delete</button>";
         html = html + '</td>';
         html = html + '<td>';
-        html = html + '<button id = "i" type = "button" onclick = "edit(this.id)"  >Edit</button>';
+        html = html + "<button onclick='edit(this,"+i+")'>edit</button>";
         html = html + '</td>';
         html = html + '</tr>';
     }
@@ -25,10 +25,17 @@ function add() {
 }
 
 function delete1(id) {
-    arr.splice(id, 1);
+   let r= confirm('Ban co muon xoa hay khong?');
+   if(r==true){
+       arr.splice(id, 1);
+   }
     showlist();
 }
 
-function edit(id) {
-  arr[id] = prompt('ten hien gio dang la: '+arr[id]+' Hay nhap ten muon sua:');
+function edit(deletebtn, index) {
+  let e = prompt("ban muon doi thanh : ",arr[index]);
+  if(e!==null){
+      arr[index] = e;
+  }
+  showlist();
 }
